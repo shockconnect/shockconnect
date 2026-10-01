@@ -305,6 +305,52 @@
       .field.full,.form-actions,.form-status{grid-column:auto}
     }
 
+  
+    .cookie-banner{
+      position:fixed;
+      left:20px;
+      right:20px;
+      bottom:20px;
+      z-index:9999;
+      max-width:900px;
+      margin:0 auto;
+      background:rgba(7,21,34,.97);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:20px;
+      box-shadow:0 20px 60px rgba(0,0,0,.38);
+      display:none;
+      gap:18px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .cookie-banner.show{display:flex}
+    .cookie-copy{max-width:620px}
+    .cookie-copy strong{display:block;margin-bottom:6px}
+    .cookie-copy p{color:var(--muted);font-size:.92rem;margin:0}
+    .cookie-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .cookie-actions button{
+      border-radius:12px;
+      padding:11px 16px;
+      font:inherit;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .cookie-accept{
+      background:var(--accent);
+      color:#07111d;
+      border:1px solid var(--accent);
+    }
+    .cookie-reject{
+      background:transparent;
+      color:var(--text);
+      border:1px solid var(--line);
+    }
+    @media(max-width:720px){
+      .cookie-banner{flex-direction:column;align-items:stretch}
+      .cookie-actions{justify-content:flex-start}
+    }
+
   </style>
 </head>
 <body>
@@ -563,6 +609,74 @@
     </div>
   </footer>
 
+
+<script>
+  const GA_MEASUREMENT_ID = 'G-41TNHWLWY3';
+  const CONSENT_KEY = 'shockconnect_analytics_consent';
+
+  function loadGoogleAnalytics() {
+    if (window.__shockconnectGA4Loaded) return;
+    window.__shockconnectGA4Loaded = true;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+    document.head.appendChild(script);
+
+    gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+    gtag('config', GA_MEASUREMENT_ID, {
+      anonymize_ip: true
+    });
+  }
+
+  function showCookieBanner() {
+    document.getElementById('cookieBanner')?.classList.add('show');
+  }
+
+  function hideCookieBanner() {
+    document.getElementById('cookieBanner')?.classList.remove('show');
+  }
+
+  const savedConsent = localStorage.getItem(CONSENT_KEY);
+
+  if (savedConsent === 'granted') {
+    loadGoogleAnalytics();
+  } else if (savedConsent !== 'denied') {
+    showCookieBanner();
+  }
+
+  document.getElementById('acceptAnalytics')?.addEventListener('click', function() {
+    localStorage.setItem(CONSENT_KEY, 'granted');
+    hideCookieBanner();
+    loadGoogleAnalytics();
+  });
+
+  document.getElementById('rejectAnalytics')?.addEventListener('click', function() {
+    localStorage.setItem(CONSENT_KEY, 'denied');
+    hideCookieBanner();
+  });
+
+  document.querySelectorAll('a[href*="instagram.com/shockconnect"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      if (typeof window.gtag === 'function' && localStorage.getItem(CONSENT_KEY) === 'granted') {
+        gtag('event', 'click_instagram', {
+          event_category: 'engagement',
+          event_label: 'Instagram Shock Connect'
+        });
+      }
+    });
+  });
+</script>
+
 <script>
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');
@@ -596,6 +710,14 @@
       if (result.success) {
         status.textContent = 'Mensagem enviada com sucesso. Em breve entraremos em contato.';
         status.style.color = '#42d392';
+
+        if (typeof window.gtag === 'function' && localStorage.getItem(CONSENT_KEY) === 'granted') {
+          gtag('event', 'generate_lead', {
+            event_category: 'contact',
+            event_label: 'Formulário do site'
+          });
+        }
+
         form.reset();
       } else {
         throw new Error(result.message || 'Falha no envio');
@@ -609,6 +731,21 @@
     }
   });
 </script>
+
+
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Preferências de cookies">
+    <div class="cookie-copy">
+      <strong>Cookies de análise</strong>
+      <p>
+        Usamos Google Analytics para entender como o site é utilizado e melhorar a experiência.
+        Você pode aceitar ou recusar os cookies de análise.
+      </p>
+    </div>
+    <div class="cookie-actions">
+      <button class="cookie-reject" id="rejectAnalytics" type="button">Recusar</button>
+      <button class="cookie-accept" id="acceptAnalytics" type="button">Aceitar</button>
+    </div>
+  </div>
 
 </body>
 </html>

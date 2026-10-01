@@ -288,6 +288,11 @@
       justify-content:center;
       margin-top:6px;
     }
+    .form-actions button:disabled{
+      opacity:.65;
+      cursor:not-allowed;
+      transform:none;
+    }
     .form-status{
       grid-column:1/-1;
       text-align:center;
@@ -502,15 +507,18 @@
             e entrar em contato para conversar sobre o projeto.
           </p>
 
-          <form class="contact-form" id="contactForm">
+          <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="09c66731-61e5-4692-894b-31198dfc9623">
+            <input type="hidden" name="from_name" value="Site Shock Connect">
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
             <div class="field">
               <label for="nome">Nome:</label>
-              <input id="nome" name="nome" type="text" autocomplete="name" required>
+              <input id="nome" name="name" type="text" autocomplete="name" required>
             </div>
 
             <div class="field">
               <label for="telefone">Telefone de contato:</label>
-              <input id="telefone" name="telefone" type="tel" autocomplete="tel" required>
+              <input id="telefone" name="phone" type="tel" autocomplete="tel" required>
             </div>
 
             <div class="field">
@@ -520,24 +528,24 @@
 
             <div class="field">
               <label for="empresa">Empresa:</label>
-              <input id="empresa" name="empresa" type="text" autocomplete="organization">
+              <input id="empresa" name="company" type="text" autocomplete="organization">
             </div>
 
             <div class="field full">
               <label for="assunto">Assunto:</label>
-              <input id="assunto" name="assunto" type="text" required>
+              <input id="assunto" name="subject" type="text" required>
             </div>
 
             <div class="field full">
               <label for="mensagem">Mensagem:</label>
-              <textarea id="mensagem" name="mensagem" required></textarea>
+              <textarea id="mensagem" name="message" required></textarea>
             </div>
 
             <div class="form-actions">
               <button class="cta" type="submit">Enviar contato</button>
             </div>
 
-            <div class="form-status" id="formStatus"></div>
+            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
           </form>
 
           <div class="hero-actions" style="justify-content:center;margin-top:24px">
@@ -556,33 +564,49 @@
   </footer>
 
 <script>
-  document.getElementById('contactForm')?.addEventListener('submit', function(event) {
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+
+  form?.addEventListener('submit', async function(event) {
     event.preventDefault();
 
-    const nome = document.getElementById('nome').value.trim();
-    const telefone = document.getElementById('telefone').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const empresa = document.getElementById('empresa').value.trim();
-    const assunto = document.getElementById('assunto').value.trim();
-    const mensagem = document.getElementById('mensagem').value.trim();
+    const button = form.querySelector('button[type="submit"]');
+    const originalText = button.textContent;
 
-    const destinatario = ['Shock.connect', 'gmail.com'].join('@');
-    const corpo =
-      'Nome: ' + nome + '\n' +
-      'Telefone de contato: ' + telefone + '\n' +
-      'Email Corporativo: ' + email + '\n' +
-      'Empresa: ' + empresa + '\n\n' +
-      'Mensagem:\n' + mensagem;
+    status.textContent = 'Enviando mensagem...';
+    status.style.color = 'var(--muted)';
+    button.disabled = true;
+    button.textContent = 'Enviando...';
 
-    const link =
-      'mailto:' + destinatario +
-      '?subject=' + encodeURIComponent('[Site Shock Connect] ' + assunto) +
-      '&body=' + encodeURIComponent(corpo);
+    try {
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData);
 
-    document.getElementById('formStatus').textContent =
-      'Abrindo seu aplicativo de e-mail para concluir o envio...';
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
 
-    window.location.href = link;
+      const result = await response.json();
+
+      if (result.success) {
+        status.textContent = 'Mensagem enviada com sucesso. Em breve entraremos em contato.';
+        status.style.color = '#42d392';
+        form.reset();
+      } else {
+        throw new Error(result.message || 'Falha no envio');
+      }
+    } catch (error) {
+      status.textContent = 'Não foi possível enviar a mensagem agora. Tente novamente em alguns instantes.';
+      status.style.color = '#ff8a80';
+    } finally {
+      button.disabled = false;
+      button.textContent = originalText;
+    }
   });
 </script>
 

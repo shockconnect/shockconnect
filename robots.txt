@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shockconnect.com.br/sitemap.xml

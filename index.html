@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shock Connect | Máquinas, Automação e Indústria 4.0 no RJ</title>
-  <meta name="description" content="Shock Connect: desenvolvimento de máquinas e equipamentos, automação industrial, SCADA, IoT, redes OT, monitoramento de motores e soluções de Indústria 4.0 no Rio de Janeiro." />
+  <meta name="description" content="Shock Connect: soluções em engenharia para Indústria 4.0, automação industrial, SCADA, IoT, redes OT, máquinas automatizadas e monitoramento de ativos no Rio de Janeiro." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="author" content="Shock Connect" />
   <meta name="theme-color" content="#081524" />
@@ -56,7 +56,10 @@
         "IoT industrial",
         "Redes OT",
         "Retrofit industrial",
-        "Desenvolvimento de máquinas e equipamentos"
+        "Desenvolvimento de máquinas e equipamentos",
+        "Monitoramento de condição de motores",
+        "Python para redes OT",
+        "Bancadas de testes industriais"
       ]
     },
     {
@@ -420,7 +423,238 @@
       .cookie-actions{justify-content:flex-start}
     }
 
-  </style>
+  
+    .hero-copy h1{
+      max-width:760px;
+      font-size:clamp(3rem,6vw,5.6rem);
+      line-height:.98;
+      margin:26px 0 22px;
+    }
+    .hero-copy h1 strong{color:var(--accent)}
+    .project-offer{
+      margin:22px 0 18px;
+      padding:20px 22px;
+      border:1px solid var(--line);
+      background:rgba(9,28,45,.72);
+      border-radius:18px;
+      display:grid;
+      gap:10px;
+    }
+    .project-offer h2{
+      font-size:1rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin:0 0 2px;
+    }
+    .offer-item{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:#edf5ff;
+      font-weight:800;
+      font-size:1.02rem;
+    }
+    .offer-item .emoji{width:26px;text-align:center}
+    .hero-subtitle{
+      color:#d7e4f1;
+      max-width:760px;
+      font-size:1.08rem;
+      line-height:1.7;
+      margin:0;
+    }
+
+    .projects{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px;
+      align-items:stretch;
+    }
+    .project{
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      padding:0;
+    }
+    .project-thumb-grid{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      height:255px;
+      gap:5px;
+      background:#061522;
+      border-bottom:1px solid var(--line);
+    }
+    .project-thumb-grid.two{grid-template-columns:2fr 1fr}
+    .project-thumb-grid img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+    }
+    .project-thumb-grid .portrait img{object-position:center top}
+    .project-card-body{
+      padding:24px 26px 26px;
+      display:flex;
+      flex-direction:column;
+      flex:1;
+    }
+    .project-card-body h3{
+      font-size:1.55rem;
+      line-height:1.25;
+      margin:14px 0 12px;
+    }
+    .project-card-body p{
+      color:var(--muted);
+      line-height:1.65;
+      margin:0;
+    }
+    .tech-chips{
+      display:flex;
+      gap:7px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .tech-chips span{
+      border:1px solid rgba(255,201,40,.25);
+      background:rgba(255,201,40,.07);
+      color:#f4df8b;
+      border-radius:999px;
+      padding:7px 10px;
+      font-size:.78rem;
+      font-weight:800;
+    }
+    .project-open{
+      margin-top:auto;
+      padding-top:22px;
+    }
+    .project-open button{
+      width:100%;
+      border:1px solid #245074;
+      background:#081a2b;
+      color:#fff;
+      padding:13px 16px;
+      border-radius:12px;
+      font:inherit;
+      font-weight:900;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .project-open button:hover{
+      border-color:var(--accent);
+      color:var(--accent);
+      transform:translateY(-1px);
+    }
+
+    dialog.project-dialog{
+      width:min(1060px,calc(100% - 28px));
+      max-height:90vh;
+      padding:0;
+      border:1px solid #28506d;
+      border-radius:24px;
+      background:#081a2b;
+      color:var(--text);
+      box-shadow:0 30px 100px rgba(0,0,0,.6);
+      overflow:auto;
+    }
+    dialog.project-dialog::backdrop{
+      background:rgba(1,8,14,.82);
+      backdrop-filter:blur(5px);
+    }
+    .dialog-head{
+      position:sticky;
+      top:0;
+      z-index:3;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:18px 22px;
+      background:rgba(8,26,43,.97);
+      border-bottom:1px solid var(--line);
+    }
+    .dialog-head strong{font-size:1.05rem}
+    .dialog-close{
+      border:1px solid var(--line);
+      background:#0c2438;
+      color:#fff;
+      width:40px;
+      height:40px;
+      border-radius:10px;
+      font-size:1.25rem;
+      cursor:pointer;
+    }
+    .dialog-content{padding:28px}
+    .dialog-hero-gallery{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:8px;
+      margin-bottom:26px;
+    }
+    .dialog-hero-gallery.two{grid-template-columns:2fr 1fr}
+    .dialog-hero-gallery img{
+      width:100%;
+      height:260px;
+      object-fit:cover;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#04111d;
+    }
+    .dialog-hero-gallery img.portrait{object-position:center top}
+    .dialog-content h2{
+      font-size:clamp(1.8rem,4vw,2.8rem);
+      line-height:1.12;
+      margin:0 0 20px;
+    }
+    .dialog-content h3{
+      color:var(--accent);
+      margin:26px 0 12px;
+      font-size:1.1rem;
+    }
+    .dialog-content p,.dialog-content li{
+      color:#d8e5f1;
+      line-height:1.72;
+    }
+    .dialog-content ul{padding-left:22px}
+    .dialog-content li{margin:9px 0}
+    .dialog-cta{
+      margin-top:26px;
+      padding:22px;
+      border:1px solid rgba(255,201,40,.28);
+      background:rgba(255,201,40,.06);
+      border-radius:16px;
+    }
+    .dialog-cta p{margin:0 0 14px;color:#f1f6fb}
+    .dialog-cta .cta{display:inline-flex}
+
+    @media(max-width:1000px){
+      .projects{grid-template-columns:1fr}
+      .project-thumb-grid{height:300px}
+    }
+    @media(max-width:760px){
+      .hero-copy h1{font-size:clamp(2.5rem,12vw,4.2rem)}
+      .project-thumb-grid,
+      .project-thumb-grid.two{
+        grid-template-columns:1fr 1fr;
+        height:auto;
+      }
+      .project-thumb-grid img{height:175px}
+      .project-thumb-grid > :first-child{
+        grid-column:1/-1;
+      }
+      .project-thumb-grid > :first-child img{height:245px}
+      .dialog-content{padding:20px}
+      .dialog-hero-gallery,
+      .dialog-hero-gallery.two{
+        grid-template-columns:1fr 1fr;
+      }
+      .dialog-hero-gallery img{height:180px}
+      .dialog-hero-gallery > :first-child{
+        grid-column:1/-1;
+      }
+      .dialog-hero-gallery > :first-child img{height:250px}
+    }
+
+</style>
 </head>
 <body>
   <header>
@@ -444,22 +678,26 @@
   <main>
     <section class="hero" id="inicio">
       <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">⚙️ Engenharia • Máquinas • Equipamentos • Indústria 4.0</div>
-          <h1>Desenvolvimento de <strong>máquinas e equipamentos inteligentes</strong> para a Indústria 4.0.</h1>
-          <p class="lead">
-            Com base no Rio de Janeiro, projetamos e integramos máquinas, equipamentos e soluções industriais conectadas,
-            combinando automação, SCADA, IoT, sensores, redes OT e software para criar sistemas
-            mais inteligentes, rastreáveis e preparados para a Indústria 4.0.
+        <div class="hero-copy">
+          <div class="eyebrow">⚙️ Engenharia • Automação • SCADA • IoT • Indústria 4.0</div>
+
+          <h1>Soluções em Engenharia para a <strong>Indústria 4.0</strong></h1>
+
+          <div class="project-offer">
+            <h2>Desenvolvimento de Projetos</h2>
+            <div class="offer-item"><span class="emoji">💻</span><span>SCADA e IoT</span></div>
+            <div class="offer-item"><span class="emoji">🤖</span><span>Automação Industrial</span></div>
+            <div class="offer-item"><span class="emoji">⚙️</span><span>Máquinas automatizadas com tecnologia da Indústria 4.0</span></div>
+          </div>
+
+          <p class="hero-subtitle">
+            Desenvolvimento de <strong>máquinas e equipamentos inteligentes</strong>, integrando automação,
+            instrumentação, software, conectividade e dados para aplicações industriais.
           </p>
+
           <div class="hero-actions">
             <a class="cta" href="#contato">Falar com a Shock Connect</a>
             <a class="cta ghost" href="#projetos">Ver projetos</a>
-          </div>
-          <div class="trust">
-            <span><b>Máquinas 4.0</b> sob medida</span>
-            <span><b>Automação</b> CLP + sensores + acionamentos</span>
-            <span><b>Conectividade</b> SCADA + IoT + dados</span>
           </div>
         </div>
 
@@ -478,7 +716,7 @@
               <div class="kpi"><small>Motor</small><b>72 %</b></div>
             </div>
             <div class="chart">
-              <svg viewBox="0 0 600 150" preserveAspectRatio="none">
+              <svg viewBox="0 0 600 150" preserveAspectRatio="none" aria-label="Exemplo de tendência de processo">
                 <polyline fill="none" stroke="#ffc928" stroke-width="4"
                   points="0,110 60,98 115,105 170,74 230,84 285,58 340,68 400,41 455,50 520,28 600,40"/>
               </svg>
@@ -530,133 +768,75 @@
       <div class="container">
         <div class="section-title">
           <p>Projetos em destaque</p>
-          <h2>Engenharia, automação e conectividade aplicadas a projetos reais.</h2>
+          <h2>Engenharia aplicada a máquinas, ativos e redes industriais.</h2>
           <span>
-            Projetos desenvolvidos com integração entre máquinas, instrumentação, CLPs,
-            sistemas supervisórios, IoT, redes OT e software.
+            Projetos reais com integração entre mecânica, automação, instrumentação,
+            software, IIoT e redes OT.
           </span>
         </div>
 
         <div class="projects">
           <article class="project">
-            <div class="project-gallery" aria-label="Imagens do projeto de túnel de vento">
-              <a href="/portfolio-tunel-vento.webp" target="_blank" rel="noopener" title="Abrir imagem do túnel de vento">
-                <img src="/portfolio-tunel-vento.webp"
-                     alt="Túnel de vento desenvolvido e automatizado pela Shock Connect"
-                     loading="lazy" decoding="async">
-              </a>
-              <a href="/portfolio-scada-pid.webp" target="_blank" rel="noopener" title="Abrir tela SCADA do controle PID">
-                <img src="/portfolio-scada-pid.webp"
-                     alt="Sistema SCADA com controle PID de velocidade do túnel de vento"
-                     loading="lazy" decoding="async">
-              </a>
-              <a href="/portfolio-painel-s71200.webp" target="_blank" rel="noopener" title="Abrir painel com CLP Siemens S7-1200">
-                <img src="/portfolio-painel-s71200.webp"
-                     alt="Painel de automação com CLP Siemens S7-1200"
-                     loading="lazy" decoding="async">
-              </a>
+            <div class="project-thumb-grid two">
+              <div><img src="/portfolio-tunel-principal.webp" alt="Túnel de vento automatizado da Shock Connect" loading="lazy" decoding="async"></div>
+              <div><img src="/portfolio-tunel-scada.webp" alt="Tela SCADA com controle PID do túnel de vento" loading="lazy" decoding="async"></div>
             </div>
-
-            <div class="project-content">
+            <div class="project-card-body">
               <div class="tag">Máquina + Automação + SCADA</div>
               <h3>Túnel de vento automatizado</h3>
-              <p class="project-summary">
-                Desenvolvimento de um túnel de vento a partir do zero, integrando projeto e montagem
-                mecânica, automação, instrumentação e supervisão para controle e monitoramento do equipamento.
+              <p>
+                Projeto End-to-End de uma bancada de ensaios com desenvolvimento mecânico,
+                automação em CLP, controle PID, SCADA e aquisição de dados.
               </p>
-
-              <p class="project-detail">
-                <strong>Desenvolvimento:</strong> montagem mecânica do túnel, lógica de controle do CLP,
-                sistema supervisório, controle PID de velocidade e integração de dados com Excel.
-              </p>
-              <p class="project-detail">
-                <strong>Tecnologias:</strong> Siemens S7-1200, Elipse E3, Modbus TCP, controle PID,
-                instrumentação e integração com Excel.
-              </p>
-              <p class="project-detail">
-                <strong>Resultado:</strong> controle estável da velocidade do ar, acompanhamento das variáveis
-                do processo e monitoramento remoto do equipamento.
-              </p>
-
-              <div class="mini">
-                <div><small>CLP</small><b>Siemens S7-1200</b></div>
-                <div><small>SCADA</small><b>Elipse E3</b></div>
-                <div><small>Comunicação</small><b>Modbus TCP</b></div>
+              <div class="tech-chips">
+                <span>Siemens S7-1200</span><span>Elipse E3</span><span>Modbus TCP</span><span>PID</span>
+              </div>
+              <div class="project-open">
+                <button type="button" data-open-dialog="dialog-tunel">Ver projeto completo</button>
               </div>
             </div>
           </article>
 
           <article class="project">
-            <div class="project-media">
-              <a href="/portfolio-monitoramento-motor.webp" target="_blank" rel="noopener" title="Abrir imagem do projeto">
-                <img src="/portfolio-monitoramento-motor.webp"
-                     alt="Painel industrial associado ao projeto de monitoramento remoto de motores"
-                     loading="lazy" decoding="async">
-              </a>
+            <div class="project-thumb-grid">
+              <div><img src="/portfolio-motor-arquitetura.webp" alt="Arquitetura IIoT para monitoramento de motores" loading="lazy" decoding="async"></div>
+              <div><img src="/portfolio-motor-grafana.webp" alt="Dashboard Grafana com corrente e temperatura do motor" loading="lazy" decoding="async"></div>
+              <div class="portrait"><img src="/portfolio-motor-telegram.webp" alt="Alertas de corrente e temperatura enviados via Telegram" loading="lazy" decoding="async"></div>
             </div>
-
-            <div class="project-content">
-              <div class="tag">IoT + Manutenção Preditiva</div>
-              <h3>Monitoramento remoto de corrente e temperatura de motores</h3>
-              <p class="project-summary">
-                Solução de monitoramento remoto para acompanhar corrente elétrica e temperatura de motores,
-                permitindo observar o comportamento do equipamento e identificar indícios de anomalias.
+            <div class="project-card-body">
+              <div class="tag">IIoT + Condition Monitoring</div>
+              <h3>Monitoramento de condição de motores</h3>
+              <p>
+                Monitoramento contínuo de corrente e temperatura para identificar desvios,
+                tendências de degradação e apoiar estratégias de manutenção baseada em condição.
               </p>
-
-              <p class="project-detail">
-                <strong>Desenvolvimento:</strong> aquisição das variáveis de campo com ESP32, transmissão dos dados
-                via MQTT, visualização histórica e em tempo real no Grafana e geração de notificações pelo Telegram.
-              </p>
-              <p class="project-detail">
-                <strong>Objetivo:</strong> apoiar a identificação antecipada de alterações de corrente e temperatura
-                que possam indicar sobrecarga, aquecimento anormal ou mudança no comportamento do motor.
-              </p>
-              <p class="project-detail">
-                <strong>Tecnologias:</strong> ESP32, MQTT, Grafana e Telegram.
-              </p>
-
-              <div class="mini">
-                <div><small>Dispositivo</small><b>ESP32</b></div>
-                <div><small>Protocolo</small><b>MQTT</b></div>
-                <div><small>Visualização</small><b>Grafana</b></div>
+              <div class="tech-chips">
+                <span>ESP32</span><span>MQTT</span><span>Grafana</span><span>Telegram</span>
+              </div>
+              <div class="project-open">
+                <button type="button" data-open-dialog="dialog-motor">Ver projeto completo</button>
               </div>
             </div>
           </article>
 
           <article class="project">
-            <div class="project-media">
-              <a href="/portfolio-rede-ot-python.webp" target="_blank" rel="noopener" title="Abrir aplicação de monitoramento de rede OT">
-                <img src="/portfolio-rede-ot-python.webp"
-                     alt="Aplicação Python para diagnóstico e monitoramento de conectividade da rede LAN em ambiente OT"
-                     loading="lazy" decoding="async">
-              </a>
+            <div class="project-thumb-grid">
+              <div><img src="/portfolio-ot-interface.webp" alt="Aplicação Python para diagnóstico de rede OT" loading="lazy" decoding="async"></div>
+              <div><img src="/portfolio-ot-codigo.webp" alt="Código Python do sistema de diagnóstico de rede OT" loading="lazy" decoding="async"></div>
+              <div class="portrait"><img src="/portfolio-ot-telegram.webp" alt="Alerta de falha de conexão enviado via Telegram" loading="lazy" decoding="async"></div>
             </div>
-
-            <div class="project-content">
+            <div class="project-card-body">
               <div class="tag">Python + Automação + Redes OT</div>
-              <h3>Diagnóstico e monitoramento de conectividade em rede OT</h3>
-              <p class="project-summary">
-                Aplicação desenvolvida para apoiar análises de automação industrial e redes de telecomunicações
-                em ambiente OT.
+              <h3>Diagnóstico e monitoramento de rede OT</h3>
+              <p>
+                Aplicação em Python para apoiar análises de automação e telecomunicações,
+                centralizando testes de conectividade e disponibilidade dos ativos da rede LAN.
               </p>
-
-              <p class="project-detail">
-                <strong>Desenvolvimento:</strong> aplicação em Python para diagnóstico e monitoramento em tempo real
-                da conectividade dos dispositivos da rede LAN no ambiente OT.
-              </p>
-              <p class="project-detail">
-                <strong>Recursos:</strong> testes de conectividade, perda de pacotes, tempo de resposta,
-                rastreamento de rota e verificação de serviços de comunicação em ativos da rede.
-              </p>
-              <p class="project-detail">
-                <strong>Resultado:</strong> visão centralizada da disponibilidade dos dispositivos e apoio à análise
-                de falhas de automação e telecomunicações.
-              </p>
-
-              <div class="mini">
-                <div><small>Software</small><b>Python</b></div>
-                <div><small>Ambiente</small><b>LAN / OT</b></div>
-                <div><small>Análise</small><b>Tempo real</b></div>
+              <div class="tech-chips">
+                <span>Python</span><span>LAN / OT</span><span>Ping</span><span>Modbus TCP</span>
+              </div>
+              <div class="project-open">
+                <button type="button" data-open-dialog="dialog-ot">Ver projeto completo</button>
               </div>
             </div>
           </article>
@@ -884,6 +1064,167 @@
 </script>
 
 
+  
+  <dialog class="project-dialog" id="dialog-tunel">
+    <div class="dialog-head">
+      <strong>Projeto — Túnel de Vento Automatizado</strong>
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Fechar">×</button>
+    </div>
+    <div class="dialog-content">
+      <div class="dialog-hero-gallery two">
+        <a href="/portfolio-tunel-principal.webp" target="_blank" rel="noopener">
+          <img src="/portfolio-tunel-principal.webp" alt="Túnel de vento automatizado">
+        </a>
+        <a href="/portfolio-tunel-scada.webp" target="_blank" rel="noopener">
+          <img src="/portfolio-tunel-scada.webp" alt="SCADA do túnel de vento com controle PID">
+        </a>
+      </div>
+
+      <h2>🚀 Túnel de Vento Automatizado — Solução Turnkey para Indústria 4.0</h2>
+
+      <h3>Engenharia & Desenvolvimento</h3>
+      <p>
+        Projeto <em>End-to-End</em>, da concepção ao comissionamento, de um túnel de vento destinado
+        a ensaios aerodinâmicos, testes operacionais e aplicações de instrumentação. A solução integrou
+        desenvolvimento mecânico, montagem estrutural, instrumentação industrial, automação e supervisão,
+        resultando em uma plataforma completa de controle e aquisição de dados.
+      </p>
+
+      <h3>⚙️ Arquitetura Tecnológica</h3>
+      <ul>
+        <li><strong>Controle e Automação:</strong> controle centralizado em CLP Siemens S7-1200, com algoritmo PID em malha fechada para estabilização da velocidade do ar.</li>
+        <li><strong>Supervisão e Telemetria:</strong> sistema SCADA desenvolvido em Elipse E3, com acompanhamento em tempo real das variáveis de processo, alarmes, tendências e estados operacionais.</li>
+        <li><strong>Comunicação Industrial:</strong> integração entre dispositivos utilizando Modbus TCP.</li>
+        <li><strong>Instrumentação e Dados:</strong> aquisição das variáveis do processo e integração com Excel para registro e análise operacional.</li>
+        <li><strong>Engenharia Mecânica:</strong> desenvolvimento e montagem do túnel, estrutura, seções de fluxo, instrumentação e integração do conjunto eletromecânico.</li>
+      </ul>
+
+      <h3>📊 Resultados & Diferenciais Técnicos</h3>
+      <ul>
+        <li>Controle estável da velocidade do ar em malha fechada.</li>
+        <li>Monitoramento remoto das principais variáveis operacionais.</li>
+        <li>Registro e análise de dados do processo.</li>
+        <li>Arquitetura modular preparada para evolução e integração com outras soluções de Indústria 4.0.</li>
+        <li>Integração completa entre mecânica, automação, instrumentação e software.</li>
+      </ul>
+
+      <div class="dialog-cta">
+        <p>💬 Precisa desenvolver uma bancada de testes, máquina especial ou solução de automação sob medida?</p>
+        <a class="cta" href="#contato" data-close-on-contact>Solicitar avaliação técnica</a>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="project-dialog" id="dialog-motor">
+    <div class="dialog-head">
+      <strong>Projeto — Monitoramento de Condição de Motores</strong>
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Fechar">×</button>
+    </div>
+    <div class="dialog-content">
+      <div class="dialog-hero-gallery">
+        <a href="/portfolio-motor-arquitetura.webp" target="_blank" rel="noopener">
+          <img src="/portfolio-motor-arquitetura.webp" alt="Arquitetura IIoT para monitoramento de motores">
+        </a>
+        <a href="/portfolio-motor-grafana.webp" target="_blank" rel="noopener">
+          <img src="/portfolio-motor-grafana.webp" alt="Dashboard Grafana de corrente e temperatura">
+        </a>
+        <a href="/portfolio-motor-telegram.webp" target="_blank" rel="noopener">
+          <img class="portrait" src="/portfolio-motor-telegram.webp" alt="Alertas Telegram do monitoramento do motor">
+        </a>
+      </div>
+
+      <h2>🚀 Sistema IIoT para Monitoramento de Condição de Motores — Indústria 4.0</h2>
+
+      <h3>Engenharia & Desenvolvimento</h3>
+      <p>
+        Projeto voltado ao <em>Condition-Based Monitoring (CBM)</em> e ao suporte à manutenção preditiva
+        de ativos eletromecânicos. A solução realiza monitoramento contínuo de corrente elétrica e temperatura,
+        permitindo identificar desvios do comportamento normal, acompanhar tendências de degradação e antecipar
+        a necessidade de inspeção ou intervenção.
+      </p>
+
+      <h3>⚙️ Arquitetura Tecnológica</h3>
+      <ul>
+        <li><strong>Sensoriamento & Edge Computing:</strong> aquisição e processamento das variáveis no ESP32, preparando dados de corrente e temperatura para monitoramento contínuo.</li>
+        <li><strong>Conectividade IIoT:</strong> publicação dos dados via MQTT, permitindo comunicação leve e contínua entre os dispositivos e a camada de supervisão.</li>
+        <li><strong>Dashboard & Histórico:</strong> utilização do Grafana para visualização em tempo real, históricos e acompanhamento de tendências térmicas e elétricas.</li>
+        <li><strong>Alertas de Anomalia:</strong> envio automático de notificações via Telegram quando corrente ou temperatura ultrapassam limites configurados, incluindo mensagens de normalização da condição.</li>
+      </ul>
+
+      <h3>📊 Resultados & Diferenciais Técnicos</h3>
+      <ul>
+        <li>Identificação rápida de alterações térmicas e elétricas.</li>
+        <li>Histórico das condições operacionais do motor.</li>
+        <li>Monitoramento remoto 24/7.</li>
+        <li>Alertas automáticos de condição anormal.</li>
+        <li>Apoio à transição da manutenção exclusivamente preventiva para uma estratégia baseada na condição real do equipamento.</li>
+        <li><strong>Suporte à melhoria de confiabilidade:</strong> dados operacionais para apoiar decisões de manutenção, reduzir intervenções não planejadas e melhorar a gestão do ciclo de vida do ativo.</li>
+      </ul>
+
+      <div class="dialog-cta">
+        <p>💬 Quer acompanhar a condição dos seus motores em tempo real e identificar anomalias antes que evoluam para falhas mais severas?</p>
+        <a class="cta" href="#contato" data-close-on-contact>Conhecer a solução</a>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="project-dialog" id="dialog-ot">
+    <div class="dialog-head">
+      <strong>Projeto — Diagnóstico e Monitoramento de Redes OT</strong>
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Fechar">×</button>
+    </div>
+    <div class="dialog-content">
+      <div class="dialog-hero-gallery">
+        <a href="/portfolio-ot-interface.webp" target="_blank" rel="noopener">
+          <img src="/portfolio-ot-interface.webp" alt="Interface Python para diagnóstico de rede OT">
+        </a>
+        <a href="/portfolio-ot-codigo.webp" target="_blank" rel="noopener">
+          <img src="/portfolio-ot-codigo.webp" alt="Código Python do sistema de diagnóstico OT">
+        </a>
+        <a href="/portfolio-ot-telegram.webp" target="_blank" rel="noopener">
+          <img class="portrait" src="/portfolio-ot-telegram.webp" alt="Alerta Telegram de falha de conexão OT">
+        </a>
+      </div>
+
+      <h2>💻 Diagnóstico e Monitoramento de Redes OT com Python</h2>
+
+      <h3>Engenharia & Desenvolvimento</h3>
+      <p>
+        Aplicação desenvolvida em Python para apoiar atividades de diagnóstico em automação industrial
+        e redes de telecomunicações no ambiente OT, centralizando testes de conectividade e informações
+        operacionais dos dispositivos da rede LAN.
+      </p>
+
+      <h3>⚙️ Recursos da Aplicação</h3>
+      <ul>
+        <li>Monitoramento em tempo real da disponibilidade dos dispositivos.</li>
+        <li>Testes de PING e percentual de perda de pacotes.</li>
+        <li>Medição de latência.</li>
+        <li>Traceroute para análise do caminho da comunicação.</li>
+        <li>Verificação de serviços e portas de comunicação.</li>
+        <li>Identificação visual de dispositivos UP/DOWN.</li>
+        <li>Monitoramento de CLPs, ESP32, roteadores e outros ativos da rede.</li>
+        <li>Envio de notificações de falha através do Telegram.</li>
+      </ul>
+
+      <h3>📊 Aplicação prática</h3>
+      <p>
+        A ferramenta foi desenvolvida para auxiliar análises de falhas envolvendo automação e telecomunicações,
+        permitindo diferenciar mais rapidamente problemas relacionados ao equipamento, comunicação, rede ou
+        serviço industrial.
+      </p>
+      <p>
+        <strong>Resultado:</strong> centralização dos diagnósticos e redução do tempo necessário para identificar
+        indisponibilidades e falhas de conectividade em ativos OT.
+      </p>
+
+      <div class="dialog-cta">
+        <p>💬 Precisa de uma ferramenta personalizada para diagnóstico, conectividade ou supervisão da sua rede OT?</p>
+        <a class="cta" href="#contato" data-close-on-contact>Solicitar avaliação técnica</a>
+      </div>
+    </div>
+  </dialog>
+
   <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Preferências de cookies">
     <div class="cookie-copy">
       <strong>Cookies de análise</strong>
@@ -897,6 +1238,47 @@
       <button class="cookie-accept" id="acceptAnalytics" type="button">Aceitar</button>
     </div>
   </div>
+
+
+<script>
+  document.querySelectorAll('[data-open-dialog]').forEach(function(button) {
+    button.addEventListener('click', function() {
+      const dialog = document.getElementById(button.dataset.openDialog);
+      if (!dialog) return;
+      dialog.showModal();
+
+      if (typeof window.gtag === 'function' &&
+          localStorage.getItem('shockconnect_analytics_consent') === 'granted') {
+        gtag('event', 'view_project', {
+          event_category: 'portfolio',
+          event_label: button.dataset.openDialog
+        });
+      }
+    });
+  });
+
+  document.querySelectorAll('[data-close-dialog]').forEach(function(button) {
+    button.addEventListener('click', function() {
+      button.closest('dialog')?.close();
+    });
+  });
+
+  document.querySelectorAll('dialog.project-dialog').forEach(function(dialog) {
+    dialog.addEventListener('click', function(event) {
+      const rect = dialog.getBoundingClientRect();
+      const clickedOutside =
+        event.clientX < rect.left || event.clientX > rect.right ||
+        event.clientY < rect.top || event.clientY > rect.bottom;
+      if (clickedOutside) dialog.close();
+    });
+  });
+
+  document.querySelectorAll('[data-close-on-contact]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      link.closest('dialog')?.close();
+    });
+  });
+</script>
 
 </body>
 </html>

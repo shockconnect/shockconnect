@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shock Connect | Máquinas, Automação e Indústria 4.0 no RJ</title>
-  <meta name="description" content="Desenvolvimento de máquinas e equipamentos, automação industrial, SCADA, IoT, redes OT e soluções de Indústria 4.0 no Rio de Janeiro." />
+  <meta name="description" content="Shock Connect: desenvolvimento de máquinas e equipamentos, automação industrial, SCADA, IoT, redes OT, monitoramento de motores e soluções de Indústria 4.0 no Rio de Janeiro." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="author" content="Shock Connect" />
   <meta name="theme-color" content="#081524" />
@@ -206,6 +206,75 @@
     }
     .mini div{padding:10px;border-radius:10px;background:#0c2237}
     .mini small{color:var(--muted);display:block}.mini b{font-size:.95rem}
+
+    .project{
+      padding:0;
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
+    }
+    .project-content{padding:24px 26px 26px}
+    .project-media{
+      position:relative;
+      aspect-ratio:16/9;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+      background:#071522;
+    }
+    .project-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform .35s ease;
+    }
+    .project-media a:hover img{transform:scale(1.025)}
+    .project-gallery{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:6px;
+      height:260px;
+      background:#071522;
+      border-bottom:1px solid var(--line);
+    }
+    .project-gallery a{
+      min-width:0;
+      overflow:hidden;
+      position:relative;
+    }
+    .project-gallery a:first-child{grid-row:1}
+    .project-gallery img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform .35s ease;
+    }
+    .project-gallery a:hover img{transform:scale(1.025)}
+    .project-summary{
+      color:var(--muted);
+      margin:10px 0 0;
+    }
+    .project-detail{
+      margin-top:16px;
+      color:#dce7f3;
+      font-size:.94rem;
+    }
+    .project-detail strong{color:var(--accent)}
+    .project .mini{margin-top:20px}
+    .projects{align-items:stretch}
+    @media(max-width:760px){
+      .project-gallery{
+        grid-template-columns:1fr 1fr;
+        height:auto;
+      }
+      .project-gallery a:first-child{
+        grid-column:1/-1;
+        height:240px;
+      }
+      .project-gallery a:not(:first-child){height:150px}
+    }
+
     .about{
       display:grid;grid-template-columns:.9fr 1.1fr;gap:36px;align-items:center;
       background:linear-gradient(135deg,#0d263e,#0a1c2d);border:1px solid var(--line);
@@ -461,52 +530,134 @@
       <div class="container">
         <div class="section-title">
           <p>Projetos em destaque</p>
-          <h2>Equipamentos reais transformados por automação e conectividade.</h2>
-          <span>Projetos que combinam engenharia, instrumentação, controle e software para criar equipamentos mais inteligentes e conectados.</span>
+          <h2>Engenharia, automação e conectividade aplicadas a projetos reais.</h2>
+          <span>
+            Projetos desenvolvidos com integração entre máquinas, instrumentação, CLPs,
+            sistemas supervisórios, IoT, redes OT e software.
+          </span>
         </div>
 
         <div class="projects">
           <article class="project">
-            <div class="tag">Automação + SCADA</div>
-            <h3>Túnel de vento automatizado</h3>
-            <p>
-              Controle e monitoramento de velocidade, temperatura, corrente do motor,
-              segurança operacional e tendências em sistema supervisório.
-            </p>
-            <div class="mini">
-              <div><small>Controle</small><b>PID</b></div>
-              <div><small>Supervisão</small><b>SCADA</b></div>
-              <div><small>Aplicação</small><b>Calibração</b></div>
+            <div class="project-gallery" aria-label="Imagens do projeto de túnel de vento">
+              <a href="/portfolio-tunel-vento.webp" target="_blank" rel="noopener" title="Abrir imagem do túnel de vento">
+                <img src="/portfolio-tunel-vento.webp"
+                     alt="Túnel de vento desenvolvido e automatizado pela Shock Connect"
+                     loading="lazy" decoding="async">
+              </a>
+              <a href="/portfolio-scada-pid.webp" target="_blank" rel="noopener" title="Abrir tela SCADA do controle PID">
+                <img src="/portfolio-scada-pid.webp"
+                     alt="Sistema SCADA com controle PID de velocidade do túnel de vento"
+                     loading="lazy" decoding="async">
+              </a>
+              <a href="/portfolio-painel-s71200.webp" target="_blank" rel="noopener" title="Abrir painel com CLP Siemens S7-1200">
+                <img src="/portfolio-painel-s71200.webp"
+                     alt="Painel de automação com CLP Siemens S7-1200"
+                     loading="lazy" decoding="async">
+              </a>
+            </div>
+
+            <div class="project-content">
+              <div class="tag">Máquina + Automação + SCADA</div>
+              <h3>Túnel de vento automatizado</h3>
+              <p class="project-summary">
+                Desenvolvimento de um túnel de vento a partir do zero, integrando projeto e montagem
+                mecânica, automação, instrumentação e supervisão para controle e monitoramento do equipamento.
+              </p>
+
+              <p class="project-detail">
+                <strong>Desenvolvimento:</strong> montagem mecânica do túnel, lógica de controle do CLP,
+                sistema supervisório, controle PID de velocidade e integração de dados com Excel.
+              </p>
+              <p class="project-detail">
+                <strong>Tecnologias:</strong> Siemens S7-1200, Elipse E3, Modbus TCP, controle PID,
+                instrumentação e integração com Excel.
+              </p>
+              <p class="project-detail">
+                <strong>Resultado:</strong> controle estável da velocidade do ar, acompanhamento das variáveis
+                do processo e monitoramento remoto do equipamento.
+              </p>
+
+              <div class="mini">
+                <div><small>CLP</small><b>Siemens S7-1200</b></div>
+                <div><small>SCADA</small><b>Elipse E3</b></div>
+                <div><small>Comunicação</small><b>Modbus TCP</b></div>
+              </div>
             </div>
           </article>
 
           <article class="project">
-            <div class="tag">IoT + Monitoramento remoto</div>
-            <h3>Nível de reservatórios</h3>
-            <p>
-              Sistema para acompanhamento remoto do nível de caixas d'água,
-              geração de alertas, histórico de dados e supervisão centralizada.
-            </p>
-            <div class="mini">
-              <div><small>Dados</small><b>Tempo real</b></div>
-              <div><small>Comunicação</small><b>IoT</b></div>
-              <div><small>Gestão</small><b>Remota</b></div>
+            <div class="project-media">
+              <a href="/portfolio-monitoramento-motor.webp" target="_blank" rel="noopener" title="Abrir imagem do projeto">
+                <img src="/portfolio-monitoramento-motor.webp"
+                     alt="Painel industrial associado ao projeto de monitoramento remoto de motores"
+                     loading="lazy" decoding="async">
+              </a>
+            </div>
+
+            <div class="project-content">
+              <div class="tag">IoT + Manutenção Preditiva</div>
+              <h3>Monitoramento remoto de corrente e temperatura de motores</h3>
+              <p class="project-summary">
+                Solução de monitoramento remoto para acompanhar corrente elétrica e temperatura de motores,
+                permitindo observar o comportamento do equipamento e identificar indícios de anomalias.
+              </p>
+
+              <p class="project-detail">
+                <strong>Desenvolvimento:</strong> aquisição das variáveis de campo com ESP32, transmissão dos dados
+                via MQTT, visualização histórica e em tempo real no Grafana e geração de notificações pelo Telegram.
+              </p>
+              <p class="project-detail">
+                <strong>Objetivo:</strong> apoiar a identificação antecipada de alterações de corrente e temperatura
+                que possam indicar sobrecarga, aquecimento anormal ou mudança no comportamento do motor.
+              </p>
+              <p class="project-detail">
+                <strong>Tecnologias:</strong> ESP32, MQTT, Grafana e Telegram.
+              </p>
+
+              <div class="mini">
+                <div><small>Dispositivo</small><b>ESP32</b></div>
+                <div><small>Protocolo</small><b>MQTT</b></div>
+                <div><small>Visualização</small><b>Grafana</b></div>
+              </div>
             </div>
           </article>
 
           <article class="project">
-            <div class="tag">Python + Redes OT</div>
-            <h3>Diagnóstico e monitoramento de conectividade em rede OT</h3>
-            <p>
-              Desenvolvimento de aplicação em Python para diagnóstico e monitoramento
-              em tempo real da conectividade dos dispositivos da rede LAN em ambiente OT,
-              facilitando a identificação de indisponibilidades, falhas de comunicação e
-              perda de conectividade entre ativos industriais.
-            </p>
-            <div class="mini">
-              <div><small>Aplicação</small><b>Python</b></div>
-              <div><small>Ambiente</small><b>LAN / OT</b></div>
-              <div><small>Monitoramento</small><b>Tempo real</b></div>
+            <div class="project-media">
+              <a href="/portfolio-rede-ot-python.webp" target="_blank" rel="noopener" title="Abrir aplicação de monitoramento de rede OT">
+                <img src="/portfolio-rede-ot-python.webp"
+                     alt="Aplicação Python para diagnóstico e monitoramento de conectividade da rede LAN em ambiente OT"
+                     loading="lazy" decoding="async">
+              </a>
+            </div>
+
+            <div class="project-content">
+              <div class="tag">Python + Automação + Redes OT</div>
+              <h3>Diagnóstico e monitoramento de conectividade em rede OT</h3>
+              <p class="project-summary">
+                Aplicação desenvolvida para apoiar análises de automação industrial e redes de telecomunicações
+                em ambiente OT.
+              </p>
+
+              <p class="project-detail">
+                <strong>Desenvolvimento:</strong> aplicação em Python para diagnóstico e monitoramento em tempo real
+                da conectividade dos dispositivos da rede LAN no ambiente OT.
+              </p>
+              <p class="project-detail">
+                <strong>Recursos:</strong> testes de conectividade, perda de pacotes, tempo de resposta,
+                rastreamento de rota e verificação de serviços de comunicação em ativos da rede.
+              </p>
+              <p class="project-detail">
+                <strong>Resultado:</strong> visão centralizada da disponibilidade dos dispositivos e apoio à análise
+                de falhas de automação e telecomunicações.
+              </p>
+
+              <div class="mini">
+                <div><small>Software</small><b>Python</b></div>
+                <div><small>Ambiente</small><b>LAN / OT</b></div>
+                <div><small>Análise</small><b>Tempo real</b></div>
+              </div>
             </div>
           </article>
         </div>

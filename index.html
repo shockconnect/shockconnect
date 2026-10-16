@@ -299,6 +299,12 @@
     }
     .contact h2{font-size:clamp(2rem,4vw,3.4rem);margin-bottom:12px}
     .contact p{color:var(--muted);max-width:650px;margin:0 auto 24px}
+    .contact-email{display:inline-flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;
+      padding:12px 18px;margin:4px auto 10px;border-radius:14px;
+      color:var(--accent);background:rgba(255,201,40,.07);border:1px solid rgba(255,201,40,.30);
+      font-size:1.08rem;font-weight:800;overflow-wrap:anywhere}
+    .contact-email:hover{background:rgba(255,201,40,.13)}
+    .contact-email-note{display:block;color:var(--muted);font-size:.87rem;margin:4px auto 0}
     footer{padding:28px 0 40px;color:#8194aa;font-size:.9rem}
     .footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.06);padding-top:24px}
     @media(max-width:900px){
@@ -1018,26 +1024,25 @@
         <div class="contact">
           <h2>Tem uma máquina, equipamento ou ideia para desenvolver?</h2>
           <p>
-            Preencha o formulário abaixo. A Shock Connect poderá avaliar sua necessidade
-            e entrar em contato para conversar sobre o projeto.
+            Conte-nos sobre sua necessidade. Preencha o formulário e abra seu aplicativo de e-mail
+            para enviar a solicitação à Shock Connect.
           </p>
+          <a class="contact-email" href="mailto:shock.connect@gmail.com" aria-label="Enviar e-mail para shock.connect@gmail.com">✉ shock.connect@gmail.com</a>
+          <span class="contact-email-note">Ou preencha os campos abaixo; o seu programa de e-mail abrirá com a mensagem pronta.</span>
 
-          <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="09c66731-61e5-4692-894b-31198dfc9623">
-            <input type="hidden" name="from_name" value="Site Shock Connect">
-            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+          <form class="contact-form" id="contactForm" action="mailto:shock.connect@gmail.com" method="post" enctype="text/plain">
             <div class="field">
               <label for="nome">Nome:</label>
               <input id="nome" name="name" type="text" autocomplete="name" required>
             </div>
 
             <div class="field">
-              <label for="telefone">Telefone de contato:</label>
+              <label for="telefone">Telefone de Contato:</label>
               <input id="telefone" name="phone" type="tel" autocomplete="tel" required>
             </div>
 
             <div class="field">
-              <label for="email">Email Corporativo:</label>
+              <label for="email">E-mail Corporativo:</label>
               <input id="email" name="email" type="email" autocomplete="email" required>
             </div>
 
@@ -1057,7 +1062,7 @@
             </div>
 
             <div class="form-actions">
-              <button class="cta" type="submit">Enviar contato</button>
+              <button class="cta" type="submit">Abrir e-mail para enviar</button>
             </div>
 
             <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
@@ -1147,57 +1152,51 @@
 </script>
 
 <script>
-  const form = document.getElementById('contactForm');
-  const status = document.getElementById('formStatus');
+  // O formulario usa o aplicativo de e-mail escolhido pelo visitante (Outlook, se for o padrao).
+  // Nenhum dado e enviado por terceiros ou armazenado no site.
+  const contactForm = document.getElementById('contactForm');
+  const contactStatus = document.getElementById('formStatus');
+  const CONTACT_EMAIL = 'shock.connect@gmail.com';
 
-  form?.addEventListener('submit', async function(event) {
+  contactForm?.addEventListener('submit', function(event) {
     event.preventDefault();
+    if (!contactForm.reportValidity()) return;
 
-    const button = form.querySelector('button[type="submit"]');
-    const originalText = button.textContent;
+    const campo = (nome) => contactForm.elements.namedItem(nome)?.value.trim() || '';
+    const nome = campo('name');
+    const telefone = campo('phone');
+    const email = campo('email');
+    const empresa = campo('company');
+    const assunto = campo('subject');
+    const mensagem = campo('message');
 
-    status.textContent = 'Enviando mensagem...';
-    status.style.color = 'var(--muted)';
-    button.disabled = true;
-    button.textContent = 'Enviando...';
+    const corpo = [
+      'Olá, equipe Shock Connect!',
+      '',
+      'Gostaria de entrar em contato pelo site.',
+      '',
+      'Nome: ' + nome,
+      'Telefone de Contato: ' + telefone,
+      'E-mail Corporativo: ' + email,
+      'Empresa: ' + (empresa || 'Não informada'),
+      'Assunto: ' + assunto,
+      '',
+      'Mensagem:',
+      mensagem,
+      '',
+      '---',
+      'Mensagem preparada pelo site Shock Connect.'
+    ].join('\r\n');
 
-    try {
-      const formData = new FormData(form);
-      const payload = Object.fromEntries(formData);
+    const titulo = 'Contato pelo site Shock Connect - ' + assunto;
+    const mailto = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent(titulo)
+      + '&body=' + encodeURIComponent(corpo);
 
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
+    contactStatus.textContent = 'Seu aplicativo de e-mail será aberto com os dados preenchidos. Revise a mensagem e clique em Enviar no aplicativo. Se não abrir, escreva para ' + CONTACT_EMAIL + '.';
+    contactStatus.style.color = 'var(--muted)';
 
-      const result = await response.json();
-
-      if (result.success) {
-        status.textContent = 'Mensagem enviada com sucesso. Em breve entraremos em contato.';
-        status.style.color = '#42d392';
-
-        if (typeof window.gtag === 'function' && localStorage.getItem(CONSENT_KEY) === 'granted') {
-          gtag('event', 'generate_lead', {
-            event_category: 'contact',
-            event_label: 'Formulário do site'
-          });
-        }
-
-        form.reset();
-      } else {
-        throw new Error(result.message || 'Falha no envio');
-      }
-    } catch (error) {
-      status.textContent = 'Não foi possível enviar a mensagem agora. Tente novamente em alguns instantes.';
-      status.style.color = '#ff8a80';
-    } finally {
-      button.disabled = false;
-      button.textContent = originalText;
-    }
+    // Abre o Outlook somente se ele estiver configurado como aplicativo de e-mail padrao.
+    window.location.href = mailto;
   });
 </script>
 
